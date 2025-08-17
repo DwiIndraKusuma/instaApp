@@ -10,14 +10,17 @@ insta clone
 
 # How It Works
 
-1. RUN Command
+1. RUN composer install
+2. Setting .env
+3. RUN Command artisan
+    - php artisan key:generate
     - php artisan migrate
     - RUN php artisan cache:clear
     - RUN php artisan config:clear
     - RUN php artisan config:cache
     - RUN php artisan storage:link
-2. RUN npm install && npm run build
-3. composer run dev
+4. RUN npm install && npm run build
+5. composer run dev
 
     (Run on port 8000)
 
