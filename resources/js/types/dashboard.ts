@@ -8,8 +8,9 @@ export interface Comment {
 export interface Post {
     id: number;
     user: string;
+    user_id: number | null;
     avatar?: string;
-    content: string | null;
+    content: string;
     image: string | null;
     likes: number;
     liked: boolean;
