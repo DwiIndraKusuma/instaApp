@@ -18,9 +18,11 @@ class DashboardController extends Controller
             return [
                 'id' => $post->id,
                 'user' => $post->user ? $post->user->name : 'Unknown',
-                'avatar' => "https://i.pravatar.cc/",
+                'user_id' => $post->user->id ?? null,
+                // 'avatar' => "https://i.pravatar.cc/",
+                'avatar' => "https://cdn-icons-png.flaticon.com/512/6596/6596121.png",
                 'content' => $post->content,
-                'image' => $post->image_url,
+                'image' => asset('storage/' . $post->image_url),
                 'likes' => $post->likes_count,
                 'liked' => false, // nanti bisa cek user login
                 'comments' => $post->comments->map(function ($c) {
@@ -34,8 +36,6 @@ class DashboardController extends Controller
 
             ];
         });
-
-        \Log::info(json_encode($data));
 
         return Inertia::render('dashboard', [
             'posts' => $data,
