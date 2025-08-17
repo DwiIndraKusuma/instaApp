@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
@@ -74,6 +74,18 @@ export default function Dashboard() {
             console.error(err);
         }
     };
+
+    const reloadToken = async () => {
+        await fetch('/refresh-csrf')
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector('meta[name="csrf-token"]')?.setAttribute('content', data.token);
+            });
+    }
+
+    useEffect(() => {
+        reloadToken()
+    }, [])
 
 
     return (
